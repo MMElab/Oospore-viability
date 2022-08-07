@@ -5,7 +5,7 @@
 ## You will be asked the location of the folder that you want to analyze and the location of the two ilastik projects (normal and edge)
 
 # Install packages
-if (require("tiff") == False) {
+if (require("tiff") == FALSE) {
   install.packages('tiff')}
 library('tiff')
 
@@ -18,7 +18,7 @@ files <- list.files(path=folder, pattern="*BF*", full.names=TRUE, recursive=FALS
 lapply(files, function(x) { 
 a = readTIFF(x)
 if (!(is.na(dim(a)[3]))){
-  a <- rowSums(a, dims = 2)
+  a <- rowMeans(a, dims = 2)
 }
 writeTIFF(a,bits.per.sample=16,paste(substr(x,1,nchar(x)-3),'converted.tif',sep=""))
 })
